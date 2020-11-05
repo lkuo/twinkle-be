@@ -1,10 +1,17 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var express = require("express");
-var app = express();
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-});
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+require('dotenv').config();
+require('module-alias/register');
+const Koa = require('koa');
+const cors = require('@koa/cors');
+const bodyParser = require('koa-bodyparser');
+const routes = require('./routes');
+const { errorHandler } = require('@middlewares/errorHandlerMiddleware');
+const app = new Koa();
+
+app.use(cors());
+app.use(bodyParser());
+app.use(errorHandler);
+app.use(routes);
+
+app.listen(process.env.PORT, function () {
+  console.log('Example app listening on port 3000!');
 });

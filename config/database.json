@@ -1,16 +1,26 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "twinkle",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "username": "postgres",
+    "password": "root",
+    "database": "postgres",
+    "host": "db",
+    "dialect": "postgres",
+    "query": {
+      "raw": true
+    }
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
+    "username": "postgres",
+    "password": "root",
+    "database": "postgres",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "port": 5431,
+    "dialect": "postgres",
+    "query": {
+      "options": {
+        "raw": true
+      }
+    },
+    "logging": false
   }
 }

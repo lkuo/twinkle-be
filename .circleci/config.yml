@@ -6,8 +6,7 @@ jobs:
       - image: circleci/node:12.14.1
     steps:
       - checkout
-      - run: npm run test:up
-      - run: npm test
+      - run: npm run test:up && npm test
 
 workflows:
   version: 2

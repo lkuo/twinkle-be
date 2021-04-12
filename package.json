@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "https://github.com/lkuo/twinkle-be",
   "scripts": {
-    "dev": "nodemon --inspect=0.0.0.0:9229 ./src/app.js",
+    "dev": "npx nodemon --inspect=0.0.0.0:9229 ./src/app.js",
     "test": "npx jest test --runInBand --coverage",
     "unit": "npx jest -c ./jest.unit.config.js --runInBand --coverage",
     "int": "npx jest -c ./jest.int.config.js --runInBand --detectOpenHandles --coverage",

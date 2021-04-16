@@ -4,7 +4,6 @@ jobs:
   setup:
     docker:
       - image: circleci/node:12.14.1
-      - image: node:12-alpine
       - image: postgres:12.5
         environment:
           POSTGRES_PASSWORD: root
@@ -19,16 +18,12 @@ jobs:
       - run:
           name: migrate DB
           command: npx sequelize db:migrate
-      - run:
-          name: run instance
-          command: npm run dev
+
   test:
     docker:
       - image: circleci/node:12.14.1
     steps:
       - run: npm run test
-
-
 
 workflows:
   version: 2

@@ -1,8 +1,10 @@
+jest.setTimeout(30000);
+process.env.PORT = 3001;
+
 const jwt = require('jsonwebtoken');
 const testHelper = require('@testHelper');
 const { sequelize } = require('@models');
-
-jest.setTimeout(30000);
+const app = require('./src/app');
 
 afterEach(() => {
   jest.resetAllMocks();
@@ -12,9 +14,10 @@ afterAll(async () => {
   jest.clearAllMocks();
   await testHelper.dropAllModels();
   await sequelize.close();
+  app.close()
 });
 
-global.BASE_URL = 'http://localhost:3001/api';
+global.BASE_URL = `http://localhost:${process.env.PORT}/api`;
 global.memberId = 0;
 global.familyId = 123;
 global.getAuthHeader = (member = {}) => {

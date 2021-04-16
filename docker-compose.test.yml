@@ -1,24 +1,6 @@
 version: "3.7"
 
 services:
-  app:
-    image: node:12-alpine
-    container_name: twinkle-be-test
-    command: sh -c "
-      npm install
-      && npm i -g sequelize-cli
-      && npx sequelize db:migrate
-      && npm run dev"
-    ports:
-      - 3001:3000
-      - 9230:9229
-    working_dir: /app
-    volumes:
-      - ./:/app
-      - /app/node_modules
-    depends_on:
-      - db
-
   db:
     image: postgres:12.5
     container_name: twinkle-database-test

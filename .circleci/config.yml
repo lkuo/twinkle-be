@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: install sequelize-cli
-          command: npm install -g sequelize-cli
+          command: npm install sequelize-cli
       - run:
           name: install dependencies
           command: npm install

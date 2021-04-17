@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  setup:
+  test:
     docker:
       - image: circleci/node:12.14.1
         environment:
@@ -22,19 +22,12 @@ jobs:
       - run:
           name: migrate DB
           command: npx sequelize db:migrate
-
-  test:
-    docker:
-      - image: circleci/node:12.14.1
-    steps:
-      - checkout
-      - run: npm run test
+      - run:
+          name: run test
+          command: npm run test
 
 workflows:
   version: 2
   just_test:
     jobs:
-      - setup
-      - test:
-          requires:
-            - setup
+      - test

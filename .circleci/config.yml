@@ -4,9 +4,13 @@ jobs:
   setup:
     docker:
       - image: circleci/node:12.14.1
+        environment:
+          NODE_ENV: test
       - image: postgres:12.5
         environment:
           POSTGRES_PASSWORD: root
+        command: -p 5431
+
     steps:
       - checkout
       - run:
@@ -33,6 +37,3 @@ workflows:
       - test:
           requires:
             - setup
-
-
-

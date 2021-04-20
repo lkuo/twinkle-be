@@ -8,22 +8,20 @@ jobs:
           NODE_ENV: test
       - image: postgres:12.5
         environment:
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: root
         command: -p 5431
 
     steps:
       - checkout
       - run:
-          name: install sequelize-cli
-          command: npm install sequelize-cli
-      - run:
-          name: install dependencies
+          name: Install dependencies
           command: npm install
       - run:
-          name: migrate DB
+          name: Migrate DB
           command: npx sequelize db:migrate
       - run:
-          name: run test
+          name: Run test
           command: npm run test
 
 workflows:

@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@12.14
+
 jobs:
   test:
     docker:
@@ -14,9 +17,7 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: Install dependencies
-          command: npm install
+      - node/install-packages
       - run:
           name: Migrate DB
           command: npx sequelize db:migrate

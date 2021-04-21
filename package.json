@@ -10,12 +10,11 @@
     "unit": "npx jest -c ./jest.unit.config.js --runInBand --coverage",
     "int": "NODE_ENV=test npx jest -c ./jest.int.config.js --runInBand --detectOpenHandles --coverage",
     "prod": "node .src/app.js",
-    "local:up": "docker-compose -f docker-compose.local.yml up",
-    "local:upbuild": "docker-compose -f docker-compose.local.yml up --build",
-    "local:down": "docker-compose --f docker-compose.local.yml stop",
-    "test:up": "docker-compose -f docker-compose.test.yml up --build",
-    "test:up:ci": "docker-compose -f docker-compose.test.yml up -d --build",
-    "test:down": "docker-compose --f docker-compose.test.yml stop"
+    "local:up": "docker compose -f docker-compose.local.yml up",
+    "local:upbuild": "docker compose -f docker-compose.local.yml up --build",
+    "local:down": "docker compose --f docker-compose.local.yml stop",
+    "test:up": "docker compose -f docker-compose.test.yml up --build",
+    "test:down": "docker compose --f docker-compose.test.yml stop"
   },
   "author": "lkuo",
   "license": "ISC",

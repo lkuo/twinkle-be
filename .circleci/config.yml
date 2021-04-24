@@ -1,0 +1,32 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.2.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:12.14.1
+        environment:
+          NODE_ENV: test
+      - image: postgres:12.5
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: root
+        command: -p 5431
+
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Migrate DB
+          command: npx sequelize db:migrate
+      - run:
+          name: Run test
+          command: npm run test
+
+workflows:
+  version: 2
+  just_test:
+    jobs:
+      - test

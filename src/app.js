@@ -12,6 +12,9 @@ app.use(bodyParser());
 app.use(errorHandler);
 app.use(routes);
 
-app.listen(process.env.PORT, function () {
-  console.log('Example app listening on port 3000!');
+module.exports = app.listen(process.env.PORT, function () {
+  if (process.env.NODE_ENV === 'test') {
+    return;
+  }
+  console.log(`Example app listening on port ${process.env.PORT}...`);
 });

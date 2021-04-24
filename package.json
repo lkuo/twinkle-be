@@ -9,7 +9,7 @@
     "test": "npx jest test --runInBand --coverage",
     "unit": "npx jest -c ./jest.unit.config.js --runInBand --coverage",
     "int": "NODE_ENV=test npx jest -c ./jest.int.config.js --runInBand --detectOpenHandles --coverage",
-    "prod": "node .src/app.js",
+    "prod": "node ./src/app.js",
     "local:up": "docker compose -f docker-compose.local.yml up",
     "local:upbuild": "docker compose -f docker-compose.local.yml up --build",
     "local:down": "docker compose --f docker-compose.local.yml stop",

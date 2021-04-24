@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.2.1
+  aws-ecr: circleci/aws-ecr@7.0.0
 
 jobs:
   test:
@@ -9,6 +10,8 @@ jobs:
       - image: cimg/node:12.14.1
         environment:
           NODE_ENV: test
+          PORT: 3000
+          ENCRYPTION_KEY: abc
       - image: postgres:12.5
         environment:
           POSTGRES_USER: postgres
@@ -25,8 +28,20 @@ jobs:
           name: Run test
           command: npm run test
 
+
 workflows:
   version: 2
-  just_test:
+  build_and_push_image:
     jobs:
       - test
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: ACCESS_KEY_ID
+          aws-secret-access-key: SECRET_ACCESS_KEY
+          dockerfile: Dockerfile
+          path: .
+          region: AWS_REGION
+          repo: twinkle
+          tag: "$CIRCLE_SHA1"
+          requires:
+            - test

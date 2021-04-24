@@ -10,6 +10,8 @@ jobs:
       - image: cimg/node:12.14.1
         environment:
           NODE_ENV: test
+          PORT: 3000
+          ENCRYPTION_KEY: abc
       - image: postgres:12.5
         environment:
           POSTGRES_USER: postgres

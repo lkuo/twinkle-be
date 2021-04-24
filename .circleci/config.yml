@@ -41,6 +41,7 @@ workflows:
           dockerfile: Dockerfile
           path: .
           region: AWS_REGION
+          repo: twinkle
           tag: "$CIRCLE_SHA1"
           requires:
             - test
